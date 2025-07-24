@@ -1,0 +1,16 @@
+﻿name: YAML and Markdown Validation
+
+on:
+  push:
+    paths: ['**.yaml', '**.md']
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Lint YAML files
+        run: |
+          sudo apt-get update && sudo apt-get install -y yamllint
+          yamllint .
